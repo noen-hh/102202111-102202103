@@ -1,27 +1,67 @@
+from flask import Flask, render_template, redirect, request, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, logout_user, login_required
 
-   from flask import Flask, render_template, redirect, request, url_for, flash
-   from werkzeug.security import generate_password_hash, check_password_hash
-   from flask_login import LoginManager, login_user, logout_user, login_required
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
-   app = Flask(__name__)
-   login_manager = LoginManager()
-   login_manager.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
-   @app.route('/register', methods=['GET', 'POST'])
-   def register():
-       if request.method == 'POST':
-           username = request.form['username']
-           password = generate_password_hash(request.form['password'])
-           # 保存用户到数据库（如SQLite或MySQL）
-           return redirect(url_for('login'))
-       return render_template('register.html')
+# 假设我们有一个数据库模型，用户表包含 phone, id_number, email, password, role（学生/导师）
+users_db = {}  # 用于存储用户信息的字典（这里可以替换为数据库操作）
 
-   @app.route('/login', methods=['GET', 'POST'])
-   def login():
-       if request.method == 'POST':
-           username = request.form['username']
-           password = request.form['password']
-           # 从数据库验证用户名和密码
-           return redirect(url_for('main_interface'))
-       return render_template('login.html')
+# 注册页面
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        phone = request.form['phone']
+        id_number = request.form['id_number']
+        email = request.form['email']
+        role = request.form['role']  # 角色：学生/导师
+        password = generate_password_hash(request.form['password'])
 
+        # 检查用户是否已经存在
+        if phone in users_db:
+            flash('该手机号已注册')
+            return redirect(url_for('register'))
+
+        # 将用户信息保存到数据库
+        users_db[phone] = {
+            'id_number': id_number,
+            'email': email,
+            'password': password,
+            'role': role
+        }
+        flash('注册成功，请登录')
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
+# 登录页面
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        phone = request.form['phone']
+        password = request.form['password']
+
+        # 验证手机号和密码
+        user = users_db.get(phone)
+        if user and check_password_hash(user['password'], password):
+            # 登录成功
+            login_user(user)
+            return redirect(url_for('main_interface'))
+        else:
+            flash('手机号或密码错误')
+            return redirect(url_for('login'))
+    return render_template('login.html')
+
+# 主页面
+@app.route('/main')
+@login_required
+def main_interface():
+    # 主页面根据用户角色显示不同的内容
+    return render_template('main.html')
+
+# 启动应用
+if __name__ == '__main__':
+    app.run(debug=True)
