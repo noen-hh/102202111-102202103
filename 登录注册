@@ -1,4 +1,4 @@
-   ```python
+
    from flask import Flask, render_template, redirect, request, url_for, flash
    from werkzeug.security import generate_password_hash, check_password_hash
    from flask_login import LoginManager, login_user, logout_user, login_required
@@ -24,5 +24,4 @@
            # 从数据库验证用户名和密码
            return redirect(url_for('main_interface'))
        return render_template('login.html')
-   ```
 
