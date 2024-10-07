@@ -1,67 +1,109 @@
-from flask import Flask, render_template, redirect, request, url_for, flash
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, login_user, logout_user, login_required
+import tkinter as tk
 
-app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+class UserRegistrationApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("用户登录")
 
-login_manager = LoginManager()
-login_manager.init_app(app)
+        # 创建登录界面的元素
+        self.label_id = tk.Label(root, text="学号/工号:")
+        self.label_id.pack()
+        self.entry_id = tk.Entry(root)
+        self.entry_id.pack()
 
-# 假设我们有一个数据库模型，用户表包含 phone, id_number, email, password, role（学生/导师）
-users_db = {}  # 用于存储用户信息的字典（这里可以替换为数据库操作）
+        self.label_password = tk.Label(root, text="密码:")
+        self.label_password.pack()
+        self.entry_password = tk.Entry(root, show="*")
+        self.entry_password.pack()
 
-# 注册页面
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        phone = request.form['phone']
-        id_number = request.form['id_number']
-        email = request.form['email']
-        role = request.form['role']  # 角色：学生/导师
-        password = generate_password_hash(request.form['password'])
+        self.login_button = tk.Button(root, text="登录", command=self.login)
+        self.login_button.pack()
 
-        # 检查用户是否已经存在
-        if phone in users_db:
-            flash('该手机号已注册')
-            return redirect(url_for('register'))
+        self.register_button = tk.Button(root, text="注册", command=self.show_register_page)
+        self.register_button.pack()
 
-        # 将用户信息保存到数据库
-        users_db[phone] = {
-            'id_number': id_number,
-            'email': email,
-            'password': password,
-            'role': role
-        }
-        flash('注册成功，请登录')
-        return redirect(url_for('login'))
-    return render_template('register.html')
-
-# 登录页面
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        phone = request.form['phone']
-        password = request.form['password']
-
-        # 验证手机号和密码
-        user = users_db.get(phone)
-        if user and check_password_hash(user['password'], password):
-            # 登录成功
-            login_user(user)
-            return redirect(url_for('main_interface'))
+        self.forgot_password_button = tk.Button(root, text="忘记密码", command=self.show_forgot_password_page)
+        self.forgot_password_button.pack()
+# 假设这里是您的 login_user 函数定义
+    def login_user(username, password):
+        # 实现用户登录逻辑，这里只是一个示例
+        if username == "admin" and password == "password":
+            return True
         else:
-            flash('手机号或密码错误')
-            return redirect(url_for('login'))
-    return render_template('login.html')
+            return False
+    def login(self):
+        id_number = self.entry_id.get()
+        password = self.entry_password.get()
+        
+        # 在这里调用登录函数，假设登录函数名为login_user
+        login_success = login_user(id_number, password)
+        
+        if login_success:
+            # 登录成功的处理
+            print("登录成功！")
+        else:
+            # 登录失败的处理
+            print("登录失败，请检查您的用户名和密码。")
 
-# 主页面
-@app.route('/main')
-@login_required
-def main_interface():
-    # 主页面根据用户角色显示不同的内容
-    return render_template('main.html')
+    def show_register_page(self):
+        self.root.title("用户注册")
+        
+        # 清空登录界面元素
+        for widget in self.root.winfo_children():
+            widget.pack_forget()
+        
+        # 创建注册界面的元素
+        self.label_name = tk.Label(self.root, text="姓名:")
+        self.label_name.pack()
+        self.entry_name = tk.Entry(self.root)
+        self.entry_name.pack()
 
-# 启动应用
-if __name__ == '__main__':
-    app.run(debug=True)
+        self.label_id = tk.Label(self.root, text="学号/工号:")
+        self.label_id.pack()
+        self.entry_id = tk.Entry(self.root)
+        self.entry_id.pack()
+
+        self.label_email = tk.Label(self.root, text="学校邮箱:")
+        self.label_email.pack()
+        self.entry_email = tk.Entry(self.root)
+        self.entry_email.pack()
+
+        self.label_password = tk.Label(self.root, text="密码:")
+        self.label_password.pack()
+        self.entry_password = tk.Entry(self.root, show="*")
+        self.entry_password.pack()
+
+        self.label_confirm_password = tk.Label(self.root, text="确认密码:")
+        self.label_confirm_password.pack()
+        self.entry_confirm_password = tk.Entry(self.root, show="*")
+        self.entry_confirm_password.pack()
+
+        self.register_button = tk.Button(self.root, text="注册", command=self.register_user)
+        self.register_button.pack()
+
+        self.return_button = tk.Button(self.root, text="返回登录页面", command=self.show_login_page)
+        self.return_button.pack()
+
+    def show_forgot_password_page(self):
+        self.root.title("忘记密码")
+        # 清空登录界面元素
+        for widget in self.root.winfo_children():
+            widget.pack_forget()
+
+        # 创建忘记密码界面的元素
+        # 添加学号/工号/学校邮箱的输入框、重设密码的输入框
+        # 创建确认按钮
+        # 创建返回按钮，command绑定到 self.show_login_page 方法
+
+    def register_user(self):
+        name = self.entry_name.get()
+        id_number = self.entry_id.get()
+        email = self.entry_email.get()
+        password = self.entry_password.get()
+        confirm_password = self.entry_confirm_password.get()
+        # 在这里调用注册函数
+
+# 创建Tkinter窗口并运行应用
+root = tk.Tk()
+app = UserRegistrationApp(root)
+root.mainloop()
