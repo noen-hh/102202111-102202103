@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="welcome">
+    <text>欢迎来到用户系统</text>
+  </view>
+  <button bindtap="logout">退出登录</button>
+</view>
