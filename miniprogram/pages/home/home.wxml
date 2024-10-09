@@ -1,6 +1,22 @@
 <view class="container">
-  <view class="welcome">
-    <text>欢迎来到用户系统</text>
-  </view>
-  <button bindtap="logout">退出登录</button>
+    <view class="header">
+        <text>关注</text>
+        <text>广场</text>
+        <text>项目圈</text>
+    </view>
+    <view class="search-bar">
+        <input type="text" placeholder="搜索" bindinput="onSearchInput"/>
+    </view>
+    <scroll-view class="project-list" scroll-y="true">
+        <block wx:for="{{projects}}" wx:key="id">
+            <view class="project-item">
+                <text>{{item.title}}</text>
+                <text>{{item.summary}}</text>
+                <text>{{item.time}} · {{item.location}}</text>
+            </view>
+        </block>
+    </scroll-view>
+    <view class="footer">
+        <text>筛选</text>
+    </view>
 </view>

@@ -1,3 +1,11 @@
 {
-  "navigationBarTitleText": "主页"
+    "navigationBarTitleText": "主页",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "statusBarStyle": "light",
+    "backgroundColor": "#EEEEEE",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+
 }

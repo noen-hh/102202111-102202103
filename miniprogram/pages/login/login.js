@@ -1,3 +1,4 @@
+// login.js
 Page({
   data: {
     phone: '',
@@ -22,6 +23,7 @@ Page({
   submitLogin: function() {
     const { phone, password } = this.data;
 
+    // 输入验证
     if (!phone || !password) {
       wx.showToast({
         title: '请输入手机号和密码',
@@ -30,35 +32,41 @@ Page({
       return;
     }
 
-    // 调用后台接口进行登录
-    wx.request({
-      url: 'https://example.com/login',  // 替换为实际登录接口
-      method: 'POST',
-      data: {
-        phone,
-        password
-      },
-      success(res) {
-        if (res.data.success) {
-          wx.showToast({
-            title: '登录成功',
-          });
-          wx.navigateTo({
-            url: '/pages/home/home'  // 登录成功后跳转到主页
-          });
+    // 从云数据库中读取用户数据
+    const db = wx.cloud.database();
+    db.collection('user').where({
+      phone: phone
+    }).get()
+      .then(res => {
+        if (res.data.length > 0) {
+          // 找到用户，进行密码匹配
+          const user = res.data[0];
+          if (user.password === password) {
+            wx.showToast({
+              title: '登录成功',
+            });
+            wx.navigateTo({
+              url: '/pages/home/home' // 登录成功后跳转到主页
+            });
+          } else {
+            wx.showToast({
+              title: '密码错误',
+              icon: 'none'
+            });
+          }
         } else {
           wx.showToast({
-            title: res.data.message || '登录失败',
+            title: '用户不存在',
             icon: 'none'
           });
         }
-      },
-      fail() {
+      })
+      .catch(err => {
         wx.showToast({
-          title: '网络错误，请稍后再试',
+          title: '查询失败',
           icon: 'none'
         });
-      }
-    });
+        console.error(err);
+      });
   }
 });
