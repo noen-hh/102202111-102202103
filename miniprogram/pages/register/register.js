@@ -1,7 +1,6 @@
 Page({
   data: {
     phone: '',
-    email: '',
     password: '',
     confirmPassword: ''
   },
@@ -10,13 +9,6 @@ Page({
   bindPhoneInput: function(e) {
     this.setData({
       phone: e.detail.value
-    });
-  },
-
-  // 绑定学校邮箱输入
-  bindEmailInput: function(e) {
-    this.setData({
-      email: e.detail.value
     });
   },
 
@@ -36,10 +28,10 @@ Page({
 
   // 提交注册
   submitRegister: function() {
-    const { phone, email, password, confirmPassword } = this.data;
+    const { phone, password, confirmPassword } = this.data;
 
     // 验证输入
-    if (!phone || !email || !password || !confirmPassword) {
+    if (!phone || !password || !confirmPassword) {
       wx.showToast({
         title: '请填写所有字段',
         icon: 'none'
@@ -48,7 +40,7 @@ Page({
     }
 
     // 验证手机号码
-    if (!/^1\d{10}$/.test(phone)) { // 正则表达式验证手机号码
+    if (!/^1\d{10}$/.test(phone)) {
       wx.showToast({
         title: '手机号必须为11位',
         icon: 'none'
@@ -74,18 +66,35 @@ Page({
       return;
     }
 
-    // 如果所有验证通过，直接显示注册成功并跳转
-    wx.showToast({
-      title: '注册成功',
-      icon: 'success',
-      duration: 2000
-    });
+    // 保存到云数据库
+    const db = wx.cloud.database();
+    db.collection('user').add({
+      data: {
+        phone: phone,
+        password: password
+      },
+      success: function(res) {
+        // 注册成功
+        wx.showToast({
+          title: '注册成功',
+          icon: 'success',
+          duration: 2000
+        });
 
-    // 模拟延迟，方便用户看到成功消息
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '/pages/login/login'  // 注册成功后跳转到登录页面
-      });
-    }, 2000); // 2秒后跳转
+        // 模拟延迟，方便用户看到成功消息
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '/pages/login/login'  // 注册成功后跳转到登录页面
+          });
+        }, 2000); // 2秒后跳转
+      },
+      fail: function(err) {
+        // 注册失败
+        wx.showToast({
+          title: '注册失败，请重试',
+          icon: 'none'
+        });
+      }
+    });
   }
 });
