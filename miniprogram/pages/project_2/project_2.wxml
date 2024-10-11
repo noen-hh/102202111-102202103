@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="project-info">
+    <view class="project-title">项目任务描述</view>
+    <view class="project-content">{{project.taskDescription}}</view>
+    <view class="project-title">所需技能</view>
+    <view class="skills">
+      <block wx:for="{{project.skills}}" wx:key="{{skill}}">
+        <text class="skill-tag">{{skill}}</text>
+      </block>
+    </view>
+  </view>
+  <!-- 申请加入按钮 -->
+  <button class="apply-button" bindtap="applyForProject">申请加入</button>
+</view>

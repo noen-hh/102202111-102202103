@@ -1,0 +1,44 @@
+.container {
+  padding: 16px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.project-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+
+.project-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.project-detail-button {
+  background-color: #2196F3;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.add-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  border: none;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+.add-icon {
+  width: 40px;
+  height: 40px;
+}

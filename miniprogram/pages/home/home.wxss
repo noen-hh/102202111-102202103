@@ -1,0 +1,168 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 至少占满整个视口高度 */
+  position: relative; /* 相对于这个容器定位底部按钮 */
+}
+
+.search-bar {
+  padding: 10px;
+}
+
+.project-list {
+  padding: 10px;
+  overflow-y: auto; /* 允许纵向滚动 */
+}
+
+.project-item {
+  margin: 10px 0; /* 项目间距 */
+  padding: 10px;
+  background-color: #FFFFFF; /* 项目背景颜色 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+}
+
+/* 底部标签页样式 */
+.footer {
+  display: flex;
+  justify-content: space-around; /* 均匀分布 */
+  background-color: #5c2d2d; /* 背景颜色 */
+  padding: 10px 0;
+  border-top: 1px solid #CCCCCC; /* 顶部边框 */
+  position: absolute; /* 绝对定位 */
+  bottom: 0; /* 固定在底部 */
+  width: 100%; /* 宽度占满父容器 */
+}
+
+.footer view {
+  flex: 1; /* 平分空间 */
+  text-align: center;
+  padding: 10px 0; /* 内边距 */
+}
+
+.footer view.active {
+  background-color: #D3D3D3; /* 被选中时的背景颜色 */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  position: fixed; /* 固定在屏幕底部 */
+  bottom: 0; /* 固定在屏幕底部 */
+  width: 100%; /* 宽度占满屏幕 */
+  padding: 10px 0;
+  background-color: #f8f8f8; /* 添加背景色以区分底部区域 */
+  border-top: 1px solid #cccccc; /* 可选：添加顶部边框 */
+}
+
+button {
+  width: 150px; /* 根据需要调整按钮宽度 */
+  height: 40px; /* 调整按钮高度 */
+  line-height: 20px;
+  text-align: center;
+  background-color: #1c52e7;
+  color: white;
+  border: none;
+  border-radius: 5px; /* 添加按钮圆角 */
+}
+
+/* 学员作品布局区域 */
+.zuopin {
+  background-color: #f3f0f8;
+  width: 100%;
+  padding: 10px; /* 添加内边距 */
+}
+
+.tupianlie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.zpbox {
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.zpbox image {
+  width: 350rpx;
+  height: 260rpx; 
+  border-radius: 10rpx;
+}
+
+.stutext {
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350rpx;
+  height: 260rpx;
+  line-height: 90rpx;
+}
+
+.line {
+  height: 2rpx;
+  width: 70rpx;
+  background-color: white;
+}
+
+.yinwxt {
+  text-transform: uppercase;
+  letter-spacing: 5rpx;
+  opacity: 0.5;
+}
+
+/* 滚动视图布局样式 */
+.box {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.kcbox {
+  width: 170rpx;
+  height: 180rpx;
+  display: inline-block;
+  margin: 20rpx 0;
+}
+
+.kcbox image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 75rpx;
+}
+
+.newtext2 {
+  width: 420rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input {
+  width: 100%; /* 搜索框宽度 */
+  height: 40px; /* 调整搜索框高度 */
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc; /* 搜索框边框 */
+}
+
+.scroll-view {
+  height: calc(100vh - 100px); /* 设置足够高度来显示所有内容 */
+  overflow-y: scroll; /* 确保内容可以滚动显示 */
+}
+
+/* 轮播图布局样式 */
+swiper {
+  height: 150px;
+  width: 100%;
+  padding: 10px；
+}
+swiper image {
+  width: 100%;
+  height: 100%;
+  padding: 10px； /* 确保图片覆盖整个 swiper 项目 */
+}

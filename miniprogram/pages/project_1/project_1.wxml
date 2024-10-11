@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="title">我的项目</view>
+  
+  <block wx:for="{{projects}}" wx:key="id">
+    <view class="project-item">
+      <text class="project-name">{{item.name}}</text>
+      <!-- 查看详情按钮 -->
+      <button class="project-detail-button" bindtap="goToProjectDetail" data-docid="{{item._id}}">
+        查看详情
+      </button>
+    </view>
+  </block>
+
+  <!-- 右下角的添加按钮 -->
+  <button class="add-button" bindtap="addProject">
+    <image src="/images/jia.jpg" class="add-icon" mode="aspectFit"></image>
+  </button>
+</view>

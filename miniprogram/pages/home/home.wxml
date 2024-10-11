@@ -1,0 +1,48 @@
+<view class="container">
+  <swiper class="swiper-container" indicator-dots="true" indicator-color="white" indicator-active-color="gray" autoplay="true" interval="5000" duration="1000">
+    <swiper-item>
+      <image class="item" src="/images/p3.jpg" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item>
+      <image class="item" src="/images/p20.jpg" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item>
+      <image class="item" src="/images/p1.jpg" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input type="text" placeholder="搜索项目名称" bindinput="onSearchInput" />
+    <button bindtap="onSearch">搜索</button> <!-- 添加搜索按钮 -->
+  </view>
+
+  <!-- 学员作品区域 -->
+  <view class="zuopin">
+    <!-- 学员作品文字区域 -->
+    <xueyuanText wenzitext="学员作品" url="/pages/news/news" />
+    
+    <!-- 学员作品图片区域 -->
+    <scroll-view scroll-y="true" style="height: calc(100vh - 100px);">
+      <view class="tupianlie">
+        <block wx:for="{{filteredWorks}}" wx:key="index"> <!-- 使用过滤后的作品 -->
+          <view class="zpbox" bindtap="navigateToDetail" data-title="{{item.title}}" data-imageurl="{{item.imageUrl}}">
+            <image src="{{item.imageUrl}}" mode="aspectFill" />
+            <view class="project-info">
+              <view class="project-name">{{item.title}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <!-- 学员作品图片区域结束 -->
+    
+    <!-- 标签页底部 -->
+    <view class="button-container">
+      <button bindtap="navigateToHome">主页</button>
+      <button bindtap="navigateToProjects">项目</button>
+      <button bindtap="navigateToChat">聊天</button>
+      <button bindtap="navigateToProfile">我的</button>
+    </view>
+  </view>
+</view>

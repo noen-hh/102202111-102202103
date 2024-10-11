@@ -1,0 +1,29 @@
+.container {
+  padding: 22px; /* 容器内边距 */
+}
+
+.project-section {
+  background-color: #f9f9f9; /* 项目段背景色 */
+  padding: 16px; /* 项目段内边距 */
+  border-radius: 8px; /* 圆角 */
+  margin-bottom: 20px; /* 项目段之间的间距 */
+}
+
+.title, .project-type, .description, .members, .tasks {
+  font-size: 18px; /* 字体大小 */
+  margin-bottom: 10px; /* 段落间距 */
+  margin-left: -200px; /* 左边距，使内容向左对齐 */
+}
+
+.edit-button {
+  position: fixed; /* 固定在页面底部 */
+  bottom: 20px; /* 距离底部的距离 */
+  left: 20px; /* 距离左边的距离 */
+  right: 20px; /* 距离右边的距离 */
+  padding: 10px; /* 按钮内边距 */
+  background-color: #007AFF; /* 按钮颜色 */
+  color: white; /* 按钮文字颜色 */
+  border: none; /* 去掉边框 */
+  border-radius: 5px; /* 圆角 */
+  font-size: 16px; /* 字体大小 */
+}

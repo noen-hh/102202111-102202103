@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="page-title">编辑项目</view>
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">项目名称：</text>
+      <input class="form-input" placeholder="请输入项目名称" bindinput="onProjectNameInput" value="{{project.name}}"/>
+    </view>
+    <view class="form-item">
+      <text class="form-label">项目类型：</text>
+      <picker class="form-input" mode="selector" range="{{projectTypes}}" bindchange="onProjectTypeChange" value="{{project.typeIndex}}">
+        <view class="picker">{{project.type || '请选择项目类型'}}</view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <text class="form-label">项目描述：</text>
+      <textarea class="form-textarea" placeholder="" bindinput="onProjectDescriptionInput">{{project.description}}</textarea>
+    </view>
+    <view class="form-item">
+      <text class="form-label">人员名单：</text>
+      <textarea class="form-textarea" placeholder="" bindinput="onMembersInput">{{project.members}}</textarea>
+    </view>
+    <view class="form-item">
+      <text class="form-label">任务安排：</text>
+      <textarea class="form-textarea" placeholder="" bindinput="onTasksInput">{{project.tasks}}</textarea>
+    </view>
+    <button class="submit-button" bindtap="onSaveEdit">保存编辑</button>
+    <button class="delete-button" bindtap="onDeleteProject">删除项目</button>
+  </view>
+</view>

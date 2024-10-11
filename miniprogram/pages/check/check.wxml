@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="title">项目名称：{{project.name}}</view>
+  <view class="divider"></view>
+  <view class="project-type">项目类型：{{project.type}}</view>
+  <view class="divider"></view>
+  <view class="description">项目描述：{{project.description}}</view>
+  <view class="divider"></view>
+  <view class="members">成员名单：{{project.members}}</view>
+  <view class="divider"></view>
+  <view class="tasks">任务安排：{{project.tasks}}</view>
+  <view class="divider"></view>
+  <!-- 编辑项目按钮 -->
+  <button class="edit-button" bindtap="onEditProject">编辑项目</button>
+</view>

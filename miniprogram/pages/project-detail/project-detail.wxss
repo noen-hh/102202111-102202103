@@ -1,0 +1,67 @@
+.detail {
+  padding: 20px; /* 内边距 */
+  background-color: #f9f9f9; /* 背景色 */
+  border-radius: 8px; /* 圆角 */
+}
+
+.title {
+  font-size: 24px; /* 项目名称字体大小 */
+  font-weight: bold; /* 粗体 */
+  margin-bottom: 10px; /* 底部外边距 */
+}
+
+.type {
+  font-size: 18px; /* 项目类型字体大小 */
+  color: #555; /* 字体颜色 */
+  margin-bottom: 20px; /* 底部外边距 */
+}
+
+.separate {
+  height: 10px; /* 分隔线高度 */
+}
+
+.divider {
+  border-top: 1px solid #ccc; /* 分隔线样式 */
+  margin: 20px 0; /* 外边距 */
+}
+
+.text-member,
+.text-task {
+  font-size: 16px; /* 人员名单和任务安排字体大小 */
+  margin-bottom: 5px; /* 底部外边距 */
+}
+
+.detail-nav {
+  position: fixed; /* 固定在底部 */
+  bottom: 0; /* 底部 */
+  left: 0; /* 左边 */
+  right: 0; /* 右边 */
+  background-color: #fff; /* 背景色 */
+  padding: 10px; /* 内边距 */
+  border-top: 1px solid #ccc; /* 顶部边框 */
+  display: flex; /* 使用弹性布局 */
+  justify-content: space-around; /* 均匀分布按钮 */
+}
+
+.button-green,
+.button-red {
+  flex: 1; /* 按钮平分可用空间 */
+  margin: 0 5px; /* 左右外边距 */
+  padding: 10px; /* 内边距 */
+  border: none; /* 去掉边框 */
+  border-radius: 5px; /* 圆角 */
+  color: #fff; /* 字体颜色 */
+}
+
+.button-green {
+  background-color: #4caf50; /* 绿色背景 */
+}
+
+.button-red {
+  background-color: #f44336; /* 红色背景 */
+}
+
+.button-green:hover,
+.button-red:hover {
+  opacity: 0.8; /* 悬停时透明度 */
+}

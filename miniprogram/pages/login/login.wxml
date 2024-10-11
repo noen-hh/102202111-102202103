@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="welcome-text">欢迎来到瓦瓦ProjectPartner</view> <!-- Welcome Text -->
+  <view class="form">
+    <input 
+      placeholder="请输入手机号" 
+      type="number" 
+      bindinput="bindPhoneInput" 
+    />
+    <input 
+      placeholder="请输入密码" 
+      password="true" 
+      bindinput="bindPasswordInput" 
+    />
+    <button bindtap="submitLogin">登录</button>
+    <view class="register-link">
+      <navigator url="/pages/register/register">还没有账号？点击注册</navigator>
+    </view>
+  </view>
+</view>

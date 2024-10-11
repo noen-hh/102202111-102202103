@@ -1,0 +1,57 @@
+<scroll-view scroll-y="true" style="height: 100vh;"> <!-- 添加滚动视图 -->
+  <view class="detail">
+    <!-- 项目名称 -->
+    <text class="title">{{project.name}}</text>
+    <view class="divider"></view>
+    
+    <!-- 项目类型 -->
+    <text class="type">项目类型: 智能/平台 {{project.type}}</text>
+    
+    <view class="separate"></view>
+    <view class="divider"></view>
+    
+    <!-- 项目描述 -->
+    <view>
+      <text>项目描述: 该平台旨在为大学生创业者提供一个全面支持的在线环境，助力他们实现创业梦想。该平台集成了创业资源、专业指导、资金对接和社交网络，帮助学生将创意转化为实际商业机会。通过与高校、企业和投资者的合作，织梦为创业者提供一站式服务，减少创业过程中的障碍，促进创新与合作。 {{project.description}}</text>
+    </view>
+    
+    <view class="separate"></view>
+    <view class="divider"></view>
+    
+    <!-- 人员名单 -->
+    <view>
+      <text>人员名单: 张伟（管理员） 李娜 王刚 刘洋 赵敏</text>
+      <block wx:for="{{project.members}}" wx:key="name">
+        <text class="text-member">{{item}}</text>
+      </block>
+    </view>
+    
+    <view class="separate"></view>
+    <view class="divider"></view>
+    
+    <!-- 任务安排 -->
+    <view>
+      <text>任务安排:
+        1. 需求分析与平台设计
+        2. 系统架构搭建与开发
+        3. 功能模块开发（资源库、导师系统、融资平台等）
+        4. 用户体验优化与测试
+        5. 市场推广与用户注册
+        6. 持续维护与功能更新
+      </text>
+      <block wx:for="{{project.tasks}}" wx:key="task">
+        <text class="text-task">{{item}}</text>
+      </block>
+    </view>
+    
+    <!-- 分界线 -->
+    <view class="divider"></view>
+  </view>
+</scroll-view>
+
+<!-- 底部悬浮栏，放置到页面底部 -->
+<view class="detail-nav">
+  <button class="button-green" bindtap="onFavoriteProject">收藏项目</button>
+  <view class="line_nav"></view>
+  <button class="button-red" bindtap="onJoinProject">加入项目</button>
+</view>

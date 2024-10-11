@@ -1,0 +1,19 @@
+<view class="detail">
+  <!-- 项目名称 -->
+  <input placeholder="项目名称" bindinput="bindInputName"/>
+  
+  <!-- 项目类型 -->
+  <input placeholder="项目类型" bindinput="bindInputType"/>
+
+  <!-- 项目描述 -->
+  <textarea placeholder="项目描述" bindinput="bindInputDescription"></textarea>
+  
+  <!-- 人员名单 -->
+  <textarea placeholder="人员名单(用逗号分隔)" bindinput="bindInputMembers"></textarea>
+
+  <!-- 任务安排 -->
+  <textarea placeholder="任务安排(用逗号分隔)" bindinput="bindInputTasks"></textarea>
+
+  <!-- 创建项目按钮 -->
+  <button bindtap="submitProject">创建项目</button>
+</view>
