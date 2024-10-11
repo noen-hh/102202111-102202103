@@ -1,3 +1,4 @@
+```plaintext
 miniprogram/
 ├── images/                     // 存放图片的文件夹
 ├── pages/                      // 页面主目录
@@ -62,7 +63,8 @@ miniprogram/
 ├── project.private.config.json  // 项目的私人配置文件
 ├── tsconfig.json                // TypeScript 的配置文件
 └── package.json                 // Node.js 的依赖和脚本
-
+```
 
 因为发布问题，需要权限，可联系开发人员我取得权限，本人二维码如图
-![1a526afdc92278d49da977e4f46961d](https://github.com/user-attachments/assets/736cf18a-0f1c-4d66-8032-cecf8fed07f1)
+![1a526afdc92278d49da977e4f46961d](https://github.com/user-attachments/assets/9471bf56-8022-4758-bb9a-83d1f654fd75)
+
